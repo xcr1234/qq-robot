@@ -16,7 +16,7 @@
 
 技术参考：
 
-https://github.com/im-qq/webqq-core
+https://github.com/xcr1234/webqq-core
 
 http://www.tuling123.com/
 

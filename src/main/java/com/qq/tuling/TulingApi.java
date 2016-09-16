@@ -39,7 +39,7 @@ public class TulingApi {
             String json = IOUtils.toString(httpResponse.getEntity().getContent(),"UTF-8");
             JSONObject jsonObject = new JSONObject(json);
             Integer code = jsonObject.getInt("code");
-            Type type = Type.valueOf(code);
+            TulingResponse.Type type = TulingResponse.Type.valueOf(code);
             String text = getString(jsonObject,"text");
             String url = getString(jsonObject,"url");
             return new TulingResponse(type,text,url);
@@ -57,18 +57,4 @@ public class TulingApi {
     }
 
 
-
-    public enum Type{
-        Text,Link,News,Cook,UnKnown;
-
-        public static Type valueOf(Integer code){
-            switch (code){
-                case 100000:return Text;
-                case 200000:return Link;
-                case 302000:return News;
-                case 308000:return Cook;
-                default:return UnKnown;
-            }
-        }
-    }
 }

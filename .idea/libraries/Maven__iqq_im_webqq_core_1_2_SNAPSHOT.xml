@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: iqq.im:webqq-core:1.2-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/iqq/im/webqq-core/1.2-SNAPSHOT/webqq-core-1.2-20160916.070447-1.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/iqq/im/webqq-core/1.2-SNAPSHOT/webqq-core-1.2-20160916.070447-1-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/iqq/im/webqq-core/1.2-SNAPSHOT/webqq-core-1.2-20160916.070447-1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
