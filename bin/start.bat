@@ -1,0 +1,1 @@
+java -jar qq-jar-with-dependencies.jar
