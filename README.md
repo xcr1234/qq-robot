@@ -5,8 +5,7 @@
 
 ![主要功能](func.png)
 
-
-
+---
 
 ##简易用法：
 配置好Java环境变量，  
@@ -15,7 +14,13 @@
     
 ##自行Maven编译
 
-配置好maven，运行Program主类。
+配置好maven，运行com.qq.Program主类。
+
+命令为：
+
+```
+mvn exec:java -Dexec.mainClass="com.qq.Program"    
+```
 
 **仅供学习交流。**
 
