@@ -42,15 +42,28 @@ public class QrCodeFrame extends JFrame{
         lblQr.setIcon(imageIcon);
     }
 
+    public void setScanned(){
+        lblQr.setIcon(null);
+        lblQr.setText("已扫描，请等待手机确认。");
+    }
+
     public static void main(String[] args) throws IOException {
         InputStream inputStream = Thread.currentThread().getContextClassLoader().getResourceAsStream("testqr.png");
         final Image image = ImageIO.read(inputStream);
+        final QrCodeFrame[] qrCodeFrame = new QrCodeFrame[1];
         EventQueue.invokeLater(new Runnable() {
             @Override
             public void run() {
-                QrCodeFrame qrCodeFrame = new QrCodeFrame(image);
-                qrCodeFrame.setVisible(true);
+                qrCodeFrame[0] = new QrCodeFrame(image);
+                qrCodeFrame[0].setVisible(true);
+
             }
         });
+        try {
+            Thread.sleep(3000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+        qrCodeFrame[0].setScanned();
     }
 }

@@ -1,6 +1,8 @@
 package com.qq.tuling;
 
 
+import iqq.im.bean.QQMsg;
+import iqq.im.bean.content.TextItem;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -10,6 +12,7 @@ import org.apache.http.client.HttpClient;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.message.BasicNameValuePair;
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -19,8 +22,7 @@ import java.util.List;
 
 public class TulingApi {
 
-    // 我把图灵机器人的新闻资讯、菜谱大全、天气查询、列车查询、航班查询功能都关闭了。
-    // 现在这个机器人只回复文字消息。
+
 
     private static Log log = LogFactory.getLog(TulingApi.class);
 
@@ -40,21 +42,37 @@ public class TulingApi {
             JSONObject jsonObject = new JSONObject(json);
             Integer code = jsonObject.getInt("code");
             TulingResponse.Type type = TulingResponse.Type.valueOf(code);
-            String text = getString(jsonObject,"text");
-            String url = getString(jsonObject,"url");
-            return new TulingResponse(type,text,url);
+            TulingResponse tulingResponse = new TulingResponse();
+            tulingResponse.setType(type);
+            tulingResponse.setText(jsonObject.getString("text"));
+            switch (type){
+                case Text:
+                    break;
+                case Link:
+                    tulingResponse.setUrl(jsonObject.getString("url"));
+                    break;
+                case News:
+                    List<News> newsList = new ArrayList<>();
+                    JSONArray list = jsonObject.getJSONArray("list");
+                    for(int i=0;i<list.length();i++){
+                        JSONObject jo = list.getJSONObject(i);
+                        newsList.add(new News(jo.getString("article"),jo.getString("source"),jo.getString("icon"),jo.getString("detailurl")));
+                    }
+                    tulingResponse.setNewsList(newsList);
+                    break;
+                case Cook:
+                    List<Cook> cookList = new ArrayList<>();
+                    JSONArray jsonArray = jsonObject.getJSONArray("list");
+                    for(int i=0;i<jsonArray.length();i++){
+                        JSONObject jo = jsonArray.getJSONObject(i);
+                        cookList.add(new Cook(jo.getString("name"),jo.getString("icon"),jo.getString("info"),jo.getString("detailurl")));
+                    }
+                    tulingResponse.setCookList(cookList);
+                    break;
+            }
+            return tulingResponse;
         }finally {
             httpPost.abort();
         }
     }
-
-    private static String getString(JSONObject jsonObject,String s){
-        Object o = jsonObject.opt(s);
-        if(o==null){
-            return null;
-        }
-        return o.toString();
-    }
-
-
 }

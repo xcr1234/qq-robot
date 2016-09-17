@@ -2,6 +2,8 @@ package com.qq;
 
 import com.alibaba.fastjson.JSON;
 import com.qq.frame.QrCodeFrame;
+import com.qq.tuling.Cook;
+import com.qq.tuling.News;
 import com.qq.tuling.TulingApi;
 import com.qq.tuling.TulingResponse;
 import iqq.im.*;
@@ -50,7 +52,7 @@ public class Program {
                 //发送到图灵api
                 HttpClient httpClient = new DefaultHttpClient();
 
-                String qq = String.valueOf(revMsg.getFrom().getQQ());
+                String qq = String.valueOf(revMsg.getFrom().getUin());
                 String info = revMsg.getText();
                 log.info("收到来自"+qq+"的消息："+info);
                 try {
@@ -60,8 +62,22 @@ public class Program {
                             sendMsg(revMsg.getFrom(),"[自动回复]:"+tulingResponse.getText());
                             break;
                         case Link:
-                            sendMsg(revMsg.getFrom(),"[自动回复]:"+tulingResponse.getUrl());
+                            sendMsg(revMsg.getFrom(),"[自动回复]:"+tulingResponse.getText());
+                            sendMsg(revMsg.getFrom(),tulingResponse.getUrl());
                             break;
+                        case News:
+                            sendMsg(revMsg.getFrom(),"[自动回复]:"+tulingResponse.getText());
+                            for(News news:tulingResponse.getNewsList()){
+                                sendMsg(revMsg.getFrom(),news.getArticle()+" "+news.getSource()+"\n"+news.getDetailUrl());
+                            }
+                            break;
+                        case Cook:
+                            sendMsg(revMsg.getFrom(),"[自动回复]:"+tulingResponse.getText());
+                            for(Cook cook:tulingResponse.getCookList()){
+                                sendMsg(revMsg.getFrom(),cook.getName()+" "+cook.getInfo()+"\n"+cook.getDetailUrl());
+                            }
+                            break;
+
                     }
                 } catch (IOException | JSONException e) {
                     log.error("获取图灵消息失败！",e);
@@ -71,6 +87,11 @@ public class Program {
         }
     }
 
+    public static void sendMsg(QQMsg qqMsg){
+        log.info("发送一条QQ消息.");
+        client.sendMsg(qqMsg,null);
+    }
+
     public static void sendMsg(QQUser user,String content){
         log.info("发送一条QQ消息："+content);
         QQMsg sendMsg = new QQMsg();
@@ -78,7 +99,7 @@ public class Program {
         sendMsg.setType(QQMsg.Type.BUDDY_MSG);
         sendMsg.addContentItem(new TextItem(content));
         sendMsg.addContentItem(new FontItem()); // 使用默认字体
-        client.sendMsg(sendMsg, null);
+        sendMsg(sendMsg);
     }
 
     public static void main(String[] args) {
@@ -151,8 +172,16 @@ public class Program {
                         QQException.QQErrorCode code = ex.getError();
                         switch (code){
                             case QRCODE_OK:
+                                try {
+                                    Thread.sleep(2000);
+                                } catch (InterruptedException e) {
+                                    e.printStackTrace();
+                                }
+                                client.checkQRCode(this);
+                                break;
                             case QRCODE_AUTH:
                                 log.info("二维码有效，等待用户扫描。");
+                                qrCodeFrame.setScanned();
                                 try {
                                     Thread.sleep(2000);
                                 } catch (InterruptedException e) {
