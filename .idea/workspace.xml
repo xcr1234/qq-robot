@@ -2,15 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f968deb5-a656-49af-bfab-3e3171b0e4e1" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/func.png" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/qq/tuling/Cook.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/main/java/com/qq/tuling/News.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/bin/qq-jar-with-dependencies.jar" afterPath="$PROJECT_DIR$/bin/qq-jar-with-dependencies.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/README.md" afterPath="$PROJECT_DIR$/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/qq/Program.java" afterPath="$PROJECT_DIR$/src/main/java/com/qq/Program.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/qq/frame/QrCodeFrame.java" afterPath="$PROJECT_DIR$/src/main/java/com/qq/frame/QrCodeFrame.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/qq/tuling/TulingApi.java" afterPath="$PROJECT_DIR$/src/main/java/com/qq/tuling/TulingApi.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/java/com/qq/tuling/TulingResponse.java" afterPath="$PROJECT_DIR$/src/main/java/com/qq/tuling/TulingResponse.java" />
     </list>
     <ignored path="qq-robot.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -322,7 +314,7 @@
       <recent name="Y:\mvn\qq-robot\src\main\java" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Program">
+  <component name="RunManager" selected="Maven.Unnamed">
     <configuration default="false" name="QrCodeFrame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
@@ -1071,12 +1063,12 @@
       <workItem from="1474009098391" duration="1626000" />
       <workItem from="1474010932430" duration="1922000" />
       <workItem from="1474072820537" duration="296000" />
-      <workItem from="1474076649038" duration="2974000" />
+      <workItem from="1474076649038" duration="3038000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="22212000" />
+    <option name="totallyTimeSpent" value="22276000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
