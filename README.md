@@ -7,19 +7,19 @@
 
 ---
 
-##简易用法：
+##运行：
 配置好Java环境变量，  
 进入bin目录运行start.bat。  
 
     
-##自行Maven编译
+##通过Maven编译
 
 配置好maven，运行com.qq.Program主类。
 
 命令为：
 
 ```
-mvn exec:java -Dexec.mainClass="com.qq.Program"    
+mvn clean compile exec:java -Dexec.mainClass="com.qq.Program"    
 ```
 
 **仅供学习交流。**
