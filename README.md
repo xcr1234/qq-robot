@@ -22,7 +22,7 @@
 mvn clean compile exec:java -Dexec.mainClass="com.qq.Program"    
 ```
 
-如果maven执行失败，可以尝试修改pom.xml，将<repositories>中的
+如果maven执行失败，可以尝试修改pom.xml，将repositories中的
 ```xml
 <repository>
             <id>webqq-core github</id>
