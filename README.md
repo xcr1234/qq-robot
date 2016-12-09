@@ -1,7 +1,7 @@
 #smart QQ聊天机器人
 
-##这个API已经失效了，请大家访问：
-https://github.com/xcr1234/smartqq
+##这个API已经失效了，请大家访问：https://github.com/xcr1234/smartqq
+
 
 主要功能：
 开启后扫描二维码登录QQ，您的QQ消息将被图灵机器人接管（限好友消息），支持以下功能；
